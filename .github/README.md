@@ -42,7 +42,7 @@
     ─「 ᴅᴇᴩʟᴏʏ ᴏɴ ʟᴏᴄᴀʟ ʜᴏsᴛ/ ᴠᴘs 」─
 </h3>
 
-- Get your [Necessary Variables](https://github.com/Tohidkhan6332/TohidXMusicc/blob/master/sample.env)
+- Get your [Necessary Variables](https://github.com/Tohidkhan6332/TohidXMusic/blob/master/sample.env)
 ---
 
 ### 🔧 Quick Setup
@@ -105,4 +105,4 @@
 <a href="https://t.me/marvelmoviehin><img src="https://img.shields.io/badge/-Support%20Channel-blue.svg?style=for-the-badge&logo=Telegram"></a>
 </p>
 
-- <b> _sᴩᴇᴄɪᴀʟ ᴛʜᴀɴᴋs ᴛᴏ [ᴛᴇᴀᴍ ʙʀᴀɴᴅᴇᴅ](https://github.com/Tohidkhan6332) ғᴏʀ [𝚃𝚘𝚑𝚒𝚍 ᴍᴜsɪᴄ ʙᴏᴛ](https://t.me/Tohid_Tech)_</b>
+- <b> _sᴩᴇᴄɪᴀʟ ᴛʜᴀɴᴋs ᴛᴏ [ᴛᴇᴀᴍ 𝚃𝚘𝚑𝚒𝚍](https://github.com/Tohidkhan6332) ғᴏʀ [𝚃𝚘𝚑𝚒𝚍 ᴍᴜsɪᴄ ʙᴏᴛ](https://t.me/Tohid_Tech)_</b>
