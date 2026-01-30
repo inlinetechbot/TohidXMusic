@@ -1,26 +1,31 @@
 import asyncio
-import random
-from pyrogram import Client, filters
-from pyrogram.enums import ChatType, ChatMemberStatus
-from pyrogram.errors import UserNotParticipant
-from pyrogram.types import ChatPermissions
+
+from pyrogram import filters
+from pyrogram.enums import ChatMembersFilter
+from pyrogram.errors import FloodWait
+
+from TohidXMusic.utils.database import get_assistant
 from TohidXMusic import app
 from TohidXMusic.utils.branded_ban import admin_filter
 
-
 SPAM_CHATS = []
 
-
 @app.on_message(
-    filters.command(["all", "mention", "mentionall"], prefixes=["/", "@", ".", "#"])
+    filters.command(
+        ["atag", "aall", "amention", "amentionall"], prefixes=["/", "@", ".", "#"]
+    )
     & admin_filter
 )
-async def tag_all_users(_, message):
-
+async def atag_all_useres(_, message):
+    userbot = await get_assistant(message.chat.id)
+    if message.chat.id in SPAM_CHATS:
+        return await message.reply_text(
+            "ᴛᴀɢɢɪɴɢ ᴘʀᴏᴄᴇss ɪs ᴀʟʀᴇᴀᴅʏ ʀᴜɴɴɪɴɢ ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴛᴏᴘ sᴏ ᴜsᴇ /acancel"
+        )
     replied = message.reply_to_message
     if len(message.command) < 2 and not replied:
         await message.reply_text(
-            "** ɢɪᴠᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ ᴛᴀɢ ᴀʟʟ, ʟɪᴋᴇ »** `@all Hi Friends`"
+            "** ɢɪᴠᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ ᴛᴀɢ ᴀʟʟ, ʟɪᴋᴇ »** `@aall Hi Friends`"
         )
         return
     if replied:
@@ -31,9 +36,13 @@ async def tag_all_users(_, message):
             if message.chat.id not in SPAM_CHATS:
                 break
             usernum += 1
-            usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
-            if usernum == 5:
-                await replied.reply_text(usertxt)
+            usertxt += f"[{m.user.first_name}](tg://openmessage?user_id={m.user.id})"
+            if usernum == 14:
+                await userbot.send_message(
+                    message.chat.id,
+                    f"{replied.text}\n\n{usertxt}",
+                    disable_web_page_preview=True,
+                )
                 await asyncio.sleep(2)
                 usernum = 0
                 usertxt = ""
@@ -51,11 +60,11 @@ async def tag_all_users(_, message):
             if message.chat.id not in SPAM_CHATS:
                 break
             usernum += 1
-            usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
-            if usernum == 5:
-                await app.send_message(
-                    message.chat.id,
-                    f"{text}\n{usertxt}\n\n|| ➥ ᴏғғ ᴛᴀɢɢɪɴɢ ʙʏ » /cancel ||",
+            usertxt += f'<a href="tg://openmessage?user_id={m.user.id}">{m.user.first_name}</a>'
+
+            if usernum == 14:
+                await userbot.send_message(
+                    message.chat.id, f"{text}\n{usertxt}", disable_web_page_preview=True
                 )
                 await asyncio.sleep(2)
                 usernum = 0
@@ -66,25 +75,7 @@ async def tag_all_users(_, message):
             pass
 
 
-@app.on_message(
-    filters.command(
-        [
-            "stopmention",
-            "offall",
-            "cancel",
-            "allstop",
-            "stopall",
-            "cancelmention",
-            "offmention",
-            "mentionoff",
-            "alloff",
-            "cancelall",
-            "allcancel",
-        ],
-        prefixes=["/", "@", "#"],
-    )
-    & admin_filter
-)
+
 async def cancelcmd(_, message):
     chat_id = message.chat.id
     if chat_id in SPAM_CHATS:
